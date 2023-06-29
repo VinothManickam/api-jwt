@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -18,9 +17,12 @@ function App() {
       const response = await fetch('https://welcome-yehr.onrender.com/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: 'username=your_username&password=password',
+        body: JSON.stringify({
+          username: 'your_username',
+          password: 'password',
+        }),
       });
 
       const { token } = await response.json();
